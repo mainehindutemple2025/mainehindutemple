@@ -1,0 +1,1 @@
+Maine hindu temple
