@@ -6,6 +6,15 @@
   <title>Maine Hindu Temple</title>
   <meta name="description" content="Maine Hindu Temple (MHT) in Westbrook, Maine. Mission, hours, events, services, and ways to support." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Social sharing (update image path if you move it) -->
+  <meta property="og:title" content="Maine Hindu Temple (MHT)" />
+  <meta property="og:description" content="Preserving and promoting Sanathana Dharma in Maine." />
+  <meta property="og:image" content="https://mainehindutemple2025.github.io/mainehindutemple/mht.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Optional favicon -->
+  <!-- <link rel="icon" href="favicon.ico"> -->
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -61,10 +70,10 @@
     }
     .hero-img {
       width: 100%;
-      height: auto;          /* ensures full visibility */
+      height: auto;         /* full visibility, responsive */
       display: block;
-      object-fit: contain;   /* prevents cropping */
-      max-height: 100vh;     /* keeps large images from overflowing screen */
+      object-fit: contain;  /* no cropping */
+      max-height: 100vh;    /* keep very large images contained */
     }
   </style>
 </head>
@@ -72,11 +81,11 @@
 
   <!-- Image Section (Fully Visible) -->
   <div class="hero-container">
-    <img src="mht.jpg" alt="Maine Hindu Temple Banner">
+    <img src="mht.jpg" alt="Maine Hindu Temple Banner" class="hero-img">
   </div>
 
   <header>
-    <!-- Header left intentionally blank (title removed as requested) -->
+    <!-- Header intentionally clean -->
   </header>
 
   <div class="container">
@@ -114,15 +123,18 @@
       <p><strong>Address:</strong> 719 Main St, Westbrook, Maine 04092, United States</p>
       <p><strong>Phone:</strong> +1 207-370-0475</p>
       <p><strong>Email:</strong> <a href="mailto:info@mainehindutemple.org">info@mainehindutemple.org</a></p>
-      <iframe class="map" src="https://www.google.com/maps?q=719+Main+St+Westbrook+Maine+04092&output=embed" allowfullscreen></iframe>
+      <iframe class="map" src="https://www.google.com/maps?q=719+Main+St+Westbrook+Maine+04092&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </section>
 
     <section id="donate">
       <h2>Support the Temple</h2>
       <p>Your contributions help sustain pujas, cultural programs, and temple maintenance. You can make donations easily through the following platforms:</p>
       <ul class="pay-list">
-        <li><strong>PayPal:</strong> <a href="https://www.paypal.com/donate/?business=info%40mainehindutemple.org&no_recurring=0&currency_code=USD" target="_blank">Donate via PayPal</a></li>
-        <li><strong>Venmo:</strong> <a href="https://venmo.com/u/Maine-HinduTemple" target="_blank">Send via Venmo (@Maine-HinduTemple)</a></li>
+        <li><strong>PayPal:</strong> <a href="https://www.paypal.com/donate/?business=info%40mainehindutemple.org&no_recurring=0&currency_code=USD" target="_blank" rel="noopener">Donate via PayPal</a></li>
+        <li><strong>Venmo:</strong> 
+          <!-- Replace the handle/URL below with your official Venmo if different -->
+          <a href="https://venmo.com/u/Maine-HinduTemple" target="_blank" rel="noopener">Send via Venmo (@Maine-HinduTemple)</a>
+        </li>
         <li><strong>Zelle:</strong> Send directly using email <a href="mailto:info@mainehindutemple.org">info@mainehindutemple.org</a> or phone <a href="tel:+12073700475">+1 207-370-0475</a></li>
       </ul>
       <p class="muted">Please verify "Maine Hindu Temple" as the recipient before sending.</p>
@@ -136,11 +148,18 @@
     </section>
   </div>
 
+  <footer>
+    <p>© <span id="year"></span> Maine Hindu Temple | <a href="https://mainehindutemple2025.github.io/mainehindutemple/">GitHub Pages</a></p>
+  </footer>
 
   <a class="floating-wa" href="https://wa.me/12073700475" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">WhatsApp</a>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Safely set year if the element exists
+    (function() {
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
