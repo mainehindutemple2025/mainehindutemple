@@ -1,0 +1,53 @@
+
+/* Maine Hindu Temple — minimal, clean theme */
+:root{
+  --bg:#fff9f2;
+  --card:#ffffff;
+  --ink:#1f2937;
+  --accent:#b45309;
+  --accent-2:#d97706;
+  --muted:#6b7280;
+  --ring:#fde68a;
+  --shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.nav{position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(6px);box-shadow:var(--shadow);z-index:10}
+.nav .inner{display:flex;align-items:center;gap:20px;justify-content:space-between;padding:12px 24px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.brand img{width:40px;height:40px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.menu{display:flex;gap:14px;flex-wrap:wrap}
+.menu a{padding:8px 10px;border-radius:10px}
+.menu a.active, .menu a:hover{background:var(--ring)}
+.hero{padding:60px 24px;background:linear-gradient(180deg,#fff, #fff4e6);border-bottom:1px solid #f1f5f9}
+.hero h1{font-size:40px;margin:0 0 10px}
+.hero p{color:var(--muted);max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:24px}
+.card{background:var(--card);border-radius:16px;padding:18px;box-shadow:var(--shadow);border:1px solid #f3f4f6}
+.card h3{margin:0 0 8px}
+.badge{display:inline-block;background:var(--ring);padding:4px 10px;border-radius:999px;font-size:12px;color:#7c2d12;margin-right:8px}
+.cta{display:inline-block;margin-top:10px;padding:10px 14px;border-radius:12px;background:var(--accent);color:white}
+.cta:hover{background:var(--accent-2)}
+.footer{margin-top:40px;padding:24px;border-top:1px solid #f1f5f9;color:var(--muted);font-size:14px}
+.section{padding:24px}
+.h2{font-size:28px;margin:0 0 12px}
+.table{width:100%;border-collapse:separate;border-spacing:0 8px}
+.table tr{background:var(--card);box-shadow:var(--shadow)}
+.table td,.table th{padding:14px 16px}
+form{display:grid;gap:12px;max-width:560px}
+input,textarea,select{padding:12px;border:1px solid #e5e7eb;border-radius:12px;background:white}
+button{padding:12px 16px;border:none;border-radius:12px;background:var(--accent);color:white;cursor:pointer}
+button:hover{background:var(--accent-2)}
+.responsive-img{width:100%;height:auto;border-radius:12px}
+@media (max-width:640px){
+  .hero h1{font-size:32px}
+}
+
+/* Donation list styles */
+.pay-list { list-style: disc; margin-left: 20px; line-height: 1.8; }
+.pay-list a { color: var(--accent); text-decoration: underline; }
+.pay-list a:hover { color: var(--accent-2); }
+.muted { color: var(--muted); font-size: 0.95rem; }
