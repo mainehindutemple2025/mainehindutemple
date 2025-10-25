@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Events · Maine Hindu Temple</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="inner container">
+      <div class="brand">
+        <img src="mht.jpg" alt="MHT">
+        <div>Maine Hindu Temple</div>
+      </div>
+      <div class="menu">
+        <a href="index.html" class="">Home</a>
+        <a href="about.html" class="">About</a>
+        <a href="events.html" class="active">Events</a>
+        <a href="gallery.html" class="">Gallery</a>
+        <a href="volunteer.html" class="">Volunteer</a>
+        <a href="donate.html" class="">Donate</a>
+        <a href="contact.html" class="">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <header class="hero container">
+    <h1>Events & Festivals</h1>
+    <p>Here are the next few events. Update this list each month.</p>
+  </header>
+  <main class="container section">
+    <table class="table">
+      <thead><tr><th>Date</th><th>Event</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>Nov 2, 2025</td><td>Karthika Deepam</td><td>Evening lamp lighting & bhajans</td></tr>
+        <tr><td>Nov 8, 2025</td><td>Diwali Lakshmi Puja</td><td>6 PM – Archana & Prasadam</td></tr>
+        <tr><td>Nov 23, 2025</td><td>Karthika Somavara Abhishekam</td><td>7 PM – Shiva abhishekam</td></tr>
+      </tbody>
+    </table>
+    <a class="cta" href="contact.html">Submit an event</a>
+  </main>
+
+
+  <div class="footer container">
+    <div><strong>Maine Hindu Temple</strong></div>
+    <div>719 Main St, Westbrook, ME 04092 <!-- Update if needed --> · Phone: (207) 370-0475</div>
+    <div>© <span id="year"></span> Maine Hindu Temple · All rights reserved.</div>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+
+</body>
+</html>
