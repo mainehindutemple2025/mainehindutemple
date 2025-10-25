@@ -1,5 +1,5 @@
 
-/* Maine Hindu Temple — minimal, clean theme */
+/* Maine Hindu Temple — flat bundle theme */
 :root{
   --bg:#fff9f2;
   --card:#ffffff;
@@ -42,12 +42,10 @@ input,textarea,select{padding:12px;border:1px solid #e5e7eb;border-radius:12px;b
 button{padding:12px 16px;border:none;border-radius:12px;background:var(--accent);color:white;cursor:pointer}
 button:hover{background:var(--accent-2)}
 .responsive-img{width:100%;height:auto;border-radius:12px}
+.pay-list { list-style: disc; margin-left: 20px; line-height: 1.8; }
+.pay-list a { text-decoration: underline; }
+.pay-list a:hover { opacity: .85; }
+.muted { color: var(--muted); font-size: 0.95rem; }
 @media (max-width:640px){
   .hero h1{font-size:32px}
 }
-
-/* Donation list styles */
-.pay-list { list-style: disc; margin-left: 20px; line-height: 1.8; }
-.pay-list a { color: var(--accent); text-decoration: underline; }
-.pay-list a:hover { color: var(--accent-2); }
-.muted { color: var(--muted); font-size: 0.95rem; }
