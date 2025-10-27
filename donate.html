@@ -11,39 +11,67 @@
   <nav class="nav">
     <div class="inner container">
       <div class="brand">
-        <img src="mht.jpg" alt="MHT">
+        <img src="mht.jpg" alt="Maine Hindu Temple logo" />
         <div>Maine Hindu Temple</div>
       </div>
       <div class="menu">
-        <a href="index.html" class="">Home</a>
-        <a href="about.html" class="">About</a>
-        <a href="events.html" class="">Events</a>
-        <a href="gallery.html" class="">Gallery</a>
-        <a href="volunteer.html" class="">Volunteer</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="volunteer.html">Volunteer</a>
         <a href="donate.html" class="active">Donate</a>
-        <a href="contact.html" class="">Contact</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
   </nav>
-
 
   <header class="hero container">
     <h1>Donate</h1>
     <p>Your generosity keeps the temple vibrant. Choose any of the following platforms.</p>
   </header>
+
   <main class="container section">
-    <section id="donate">
+    <!-- Existing donation options -->
+    <section id="donate" class="section">
       <h2>Support the Temple</h2>
       <p>Your contributions help sustain pujas, cultural programs, and temple maintenance. You can make donations easily through the following platforms:</p>
       <ul class="pay-list">
-        <li><strong>PayPal:</strong> <a href="https://www.paypal.com/donate/?business=info%40mainehindutemple.org&no_recurring=0&currency_code=USD" target="_blank">Donate via PayPal</a></li>
-        <li><strong>Venmo:</strong> <a href="https://venmo.com/u/MaineHinduTemple" target="_blank">Send via Venmo (@MaineHinduTemple)</a></li>
-        <li><strong>Zelle:</strong> Send directly using email <a href="mailto:info@mainehindutemple.org">info@mainehindutemple.org</a> or phone <a href="tel:+12073700475">+1 207-370-0475</a></li>
+        <li><strong>PayPal:</strong> <a href="https://www.paypal.com/donate/?business=info%40mainehindutemple.org&no_recurring=0&currency_code=USD" target="_blank" rel="noopener">Donate via PayPal</a></li>
+        <li><strong>Venmo:</strong> <a href="https://venmo.com/u/MaineHinduTemple" target="_blank" rel="noopener">Send via Venmo (@MaineHinduTemple)</a></li>
+        <li><strong>Zelle:</strong> Send directly using email <a href="mailto:info@mainehindutemple.org">info@mainehindutemple.org</a> or phone <a href="tel:+12073700475">+1 (207) 370-0475</a></li>
       </ul>
-      <p class="muted">Please verify "Maine Hindu Temple" as the recipient before sending.</p>
+      <p class="muted">Please verify “Maine Hindu Temple” as the recipient before sending.</p>
     </section>
 
-    <section id="community">
+    <!-- NEW: Donation Drive -->
+    <section id="donation-drive" class="section">
+      <h2>Donation Drive</h2>
+      <p><strong>MHT board</strong> is requesting volunteers and community members to participate in any of the donation activities below. Please sign up and spread the word to donate towards the <strong>$1-Day Program</strong>.</p>
+
+      <h3>$1-Day Program &amp; Pledges</h3>
+      <ul>
+        <li>Devotees can participate by signing up to pay a <strong>recurring amount of your choice</strong> — Monthly, Quarterly, Half-Yearly, or Yearly.</li>
+        <li>Make a contribution by clicking this link:&nbsp;
+          <a href="pledge.html" target="_blank" rel="noopener">Donation / Pledge Form</a>
+          <!-- Replace pledge.html with your actual form link -->
+        </li>
+        <li>Those who have already pledged, please donate your <strong>2025 commitment</strong> towards your donation/pledge.</li>
+      </ul>
+
+      <h3>Ongoing &amp; Upcoming Works</h3>
+      <ul>
+        <li>Kitchen upgrade</li>
+        <li>Priest acquisition</li>
+        <li>Painting temple premises</li>
+        <li>Carpet/flooring in the corridor</li>
+        <li>Front porch repairs</li>
+        <li>Upstairs room repairs</li>
+      </ul>
+    </section>
+
+    <!-- Existing community blurb -->
+    <section id="community" class="section">
       <h2>About the Maine Hindu American Community</h2>
       <p>Learn more about how the Maine Hindu community has grown and established itself in the region in this article from <em>The World</em>:</p>
       <p><a href="https://theworld.org/stories/2013/09/24/maine-hindu-american-community-comes-its-own" target="_blank" rel="noopener">
@@ -51,13 +79,15 @@
     </section>
   </main>
 
-
-  <div class="footer container">
+  <footer class="footer container">
     <div><strong>Maine Hindu Temple</strong></div>
-    <div>719 Main St, Westbrook, ME 04092 · Phone: (207) 370-0475</div>
+    <div>719 Main St, Westbrook, ME 04092 · Phone: <a href="tel:+12073700475">(207) 370-0475</a></div>
     <div>© <span id="year"></span> Maine Hindu Temple · All rights reserved.</div>
-  </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
