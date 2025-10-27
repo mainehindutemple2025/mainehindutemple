@@ -19,8 +19,13 @@
 
     /* Facebook follow section */
     .facebook-section {
-      text-align: center;
       margin: 50px 0;
+      text-align: right;          /* pushes content to the right */
+    }
+    .facebook-section h2,
+    .facebook-section p {
+      text-align: right;          /* keep heading & paragraph right-aligned */
+      margin-right: 0;
     }
     .facebook-button {
       display: inline-flex;
@@ -35,6 +40,7 @@
       text-decoration: none;
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
       transition: background-color 0.3s ease, transform 0.3s ease;
+      white-space: nowrap;
     }
     .facebook-button:hover {
       background-color: #145dbf;
@@ -43,6 +49,15 @@
     .facebook-button img {
       width: 22px;
       height: 22px;
+    }
+
+    /* Responsive: center the section on smaller screens */
+    @media (max-width: 520px) {
+      .facebook-section,
+      .facebook-section h2,
+      .facebook-section p {
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -115,7 +130,7 @@
     </section>
 
     <!-- Facebook Section -->
-    <section class="facebook-section">
+    <section class="facebook-section container">
       <h2>Follow Us on Facebook</h2>
       <p>Stay connected with temple updates, events, and photos.</p>
       <a class="facebook-button" href="https://www.facebook.com/MaineHinduTemple" target="_blank" rel="noopener">
@@ -123,7 +138,6 @@
         Follow Maine Hindu Temple
       </a>
     </section>
-
   </main>
 
   <!-- Footer -->
