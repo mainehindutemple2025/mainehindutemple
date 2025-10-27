@@ -16,6 +16,34 @@
     .brand div {
       display: none;       /* hides the text name */
     }
+
+    /* Facebook follow section */
+    .facebook-section {
+      text-align: center;
+      margin: 50px 0;
+    }
+    .facebook-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background-color: #1877f2;
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .facebook-button:hover {
+      background-color: #145dbf;
+      transform: translateY(-2px);
+    }
+    .facebook-button img {
+      width: 22px;
+      height: 22px;
+    }
   </style>
 </head>
 <body>
@@ -36,7 +64,6 @@
         <a href="donate.html" class="active">Donate</a>
         <a href="contact.html">Contact</a>
         <a href="report.html">Report</a>
-        <a href="https://www.facebook.com/MaineHinduTemple" target="_blank" rel="noopener">Facebook</a>
       </div>
     </div>
   </nav>
@@ -86,6 +113,17 @@
         <li>Upstairs room repairs</li>
       </ul>
     </section>
+
+    <!-- Facebook Section -->
+    <section class="facebook-section">
+      <h2>Follow Us on Facebook</h2>
+      <p>Stay connected with temple updates, events, and photos.</p>
+      <a class="facebook-button" href="https://www.facebook.com/MaineHinduTemple" target="_blank" rel="noopener">
+        <img src="facebook-icon.png" alt="Facebook Logo" />
+        Follow Maine Hindu Temple
+      </a>
+    </section>
+
   </main>
 
   <!-- Footer -->
