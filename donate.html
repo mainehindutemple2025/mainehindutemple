@@ -6,7 +6,7 @@
   <title>Donate · Maine Hindu Temple</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Inline image adjustments */
+    /* ===== Base styling ===== */
     .brand img {
       width: 300px;
       height: auto;
@@ -17,74 +17,112 @@
       display: none;
     }
 
-    /* Common gold button style */
-    .gold-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 20px;
-      background-color: #e0c66c; /* MHT gold */
-      color: #4a2c00;
-      font-weight: 600;
-      border-radius: 8px;
-      text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      margin: 5px;
-    }
-    .gold-button:hover {
-      background-color: #d4b44d;
-      transform: translateY(-2px);
+    :root {
+      --mht-gold: #e0c66c;
+      --mht-gold-dark: #d4b44d;
+      --ink: #1b1b1b;
+      --muted: #6b6b6b;
+      --card: #ffffff;
+      --ring: rgba(0,0,0,.08);
     }
 
-    /* Pay-list styling */
-    .pay-list {
-      list-style: none;
-      padding: 0;
-      margin-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-    }
-
-    .pay-list li {
-      margin: 10px;
-      text-align: center;
-    }
-
-    /* Facebook section styling - aligned like Donation Drive */
-    .facebook-section {
+    /* ===== Modern Donation Section ===== */
+    .donate-modern {
       margin: 50px 0;
       text-align: center;
     }
+    .donate-modern .dm-title {
+      font-size: 2rem;
+      margin: 0 0 8px;
+      color: var(--ink);
+      letter-spacing: 0.2px;
+    }
+    .donate-modern .dm-subtitle {
+      margin: 0 auto 26px;
+      max-width: 740px;
+      color: var(--muted);
+    }
 
-    .facebook-button {
+    .dm-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+      justify-items: center;
+    }
+    @media (max-width: 900px) {
+      .dm-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .dm-grid { grid-template-columns: 1fr; }
+    }
+
+    .dm-card {
+      background: var(--card);
+      border: 1px solid var(--ring);
+      border-radius: 14px;
+      padding: 22px 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.05);
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .dm-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 26px rgba(0,0,0,.08);
+    }
+    .dm-icon {
+      color: var(--mht-gold);
+      background: #fff6d6;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(224,198,108,.35);
+    }
+    .dm-card h3 {
+      margin: 6px 0 0;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+    .dm-text {
+      margin: 0 0 6px;
+      color: var(--muted);
+      min-height: 2.2em;
+    }
+
+    .dm-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      padding: 12px 22px;
-      background-color: #e0c66c;
-      color: #4a2c00;
-      font-weight: 600;
-      font-size: 16px;
-      border-radius: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--mht-gold);
+      color: #3f2a00;
+      font-weight: 700;
       text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      margin-top: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,.12);
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
     }
-
-    .facebook-button:hover {
-      background-color: #d4b44d;
+    .dm-btn:hover {
+      background: var(--mht-gold-dark);
       transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0,0,0,.15);
     }
 
-    .facebook-button img {
-      width: 22px;
-      height: 22px;
-      filter: brightness(0) saturate(100%) invert(9%) sepia(35%) saturate(550%) hue-rotate(4deg) brightness(96%) contrast(93%);
+    .dm-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* Footer styling */
+    footer {
+      margin-top: 50px;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+      text-align: center;
     }
   </style>
 </head>
@@ -113,52 +151,75 @@
   <!-- Header -->
   <header class="hero container">
     <h1>Donate</h1>
-    <p>Your generosity keeps the temple vibrant. Choose any of the following platforms.</p>
+    <p>Your generosity keeps the temple vibrant and supports our community programs.</p>
   </header>
 
-  <!-- Main Content -->
+  <!-- Modern Donation Section -->
   <main class="container section">
-    <!-- Donation options -->
-    <section id="donate" class="section">
-      <h2>Support the Temple</h2>
-      <p>Your contributions help sustain pujas, cultural programs, and temple maintenance. You can make donations easily through the following platforms:</p>
+    <section id="donate" class="donate-modern">
+      <h2 class="dm-title">Support the Temple</h2>
+      <p class="dm-subtitle">
+        Your generosity sustains pujas, cultural programs, and temple maintenance. Choose an option below:
+      </p>
 
-      <ul class="pay-list">
-        <li>
-          <a class="gold-button" href="https://www.paypal.com/donate/?business=info%40mainehindutemple.org&no_recurring=0&currency_code=USD" target="_blank" rel="noopener">
-            💳 Donate via PayPal
-          </a>
-        </li>
-        <li>
-          <a class="gold-button" href="https://venmo.com/u/MaineHinduTemple" target="_blank" rel="noopener">
-            💸 Send via Venmo
-          </a>
-        </li>
-        <li>
-          <a class="gold-button" href="mailto:info@mainehindutemple.org" target="_blank" rel="noopener">
-            📩 Send via Zelle (info@mainehindutemple.org)
-          </a>
-        </li>
-      </ul>
+      <div class="dm-grid">
+        <!-- PayPal -->
+        <article class="dm-card">
+          <div class="dm-icon">
+            💳
+          </div>
+          <h3>PayPal</h3>
+          <p class="dm-text">Fast and secure online donation.</p>
+          <a class="dm-btn" href="https://www.paypal.com/donate/?business=info%40mainehindutemple.org&no_recurring=0&currency_code=USD" target="_blank" rel="noopener">Donate via PayPal</a>
+        </article>
 
-      <p class="muted">Please verify “Maine Hindu Temple” as the recipient before sending.</p>
+        <!-- Venmo -->
+        <article class="dm-card">
+          <div class="dm-icon">
+            💸
+          </div>
+          <h3>Venmo</h3>
+          <p class="dm-text">Send your donation using our official Venmo account.</p>
+          <a class="dm-btn" href="https://venmo.com/u/MaineHinduTemple" target="_blank" rel="noopener">Send via Venmo</a>
+        </article>
+
+        <!-- Zelle -->
+        <article class="dm-card">
+          <div class="dm-icon">
+            📩
+          </div>
+          <h3>Zelle</h3>
+          <p class="dm-text">Donate directly via email or phone using Zelle.</p>
+          <a class="dm-btn" href="mailto:info@mainehindutemple.org" target="_blank" rel="noopener">Send via Zelle</a>
+        </article>
+
+        <!-- Facebook -->
+        <article class="dm-card">
+          <div class="dm-icon">
+            📘
+          </div>
+          <h3>Facebook</h3>
+          <p class="dm-text">Stay connected and support temple events online.</p>
+          <a class="dm-btn" href="https://www.facebook.com/MaineHinduTemple" target="_blank" rel="noopener">Follow on Facebook</a>
+        </article>
+      </div>
+
+      <p class="dm-note">
+        Please verify <strong>“Maine Hindu Temple”</strong> as the recipient before sending.
+      </p>
     </section>
 
     <!-- Donation Drive -->
     <section id="donation-drive" class="section">
       <h2>Donation Drive</h2>
-      <p><strong>MHT Board</strong> is requesting volunteers and community members to participate in any of the donation activities below. Please sign up and spread the word to donate towards the <strong>$1-Day Program</strong>.</p>
+      <p><strong>MHT Board</strong> invites community members to join the <strong>$1-Day Program</strong> or pledge an amount of your choice — monthly, quarterly, or yearly.</p>
 
-      <h3>$1-Day Program &amp; Pledges</h3>
       <ul>
-        <li>Devotees can participate by signing up to pay a <strong>recurring amount of your choice</strong> — Monthly, Quarterly, Half-Yearly, or Yearly.</li>
-        <li>Make a contribution by clicking this link:&nbsp;
-          <a href="pledge.html" target="_blank" rel="noopener">Donation / Pledge Form</a>
-        </li>
-        <li>Those who have already pledged, please donate your <strong>2025 commitment</strong> towards your donation/pledge.</li>
+        <li><a href="pledge.html" target="_blank" rel="noopener">Donation / Pledge Form</a></li>
+        <li>Those who have already pledged, please donate your <strong>2025 commitment</strong>.</li>
       </ul>
 
-      <h3>Ongoing &amp; Upcoming Works</h3>
+      <h3>Ongoing & Upcoming Works</h3>
       <ul>
         <li>Kitchen upgrade</li>
         <li>Priest acquisition</li>
@@ -168,26 +229,16 @@
         <li>Upstairs room repairs</li>
       </ul>
     </section>
-
-    <!-- Facebook Section -->
-    <section class="facebook-section section">
-      <h2>Follow Us on Facebook</h2>
-      <p>Stay connected with temple updates, events, and photos.</p>
-      <a class="facebook-button" href="https://www.facebook.com/MaineHinduTemple" target="_blank" rel="noopener">
-        <img src="facebook-icon.png" alt="Facebook Logo" />
-        Follow Maine Hindu Temple
-      </a>
-    </section>
   </main>
 
   <!-- Footer -->
-  <footer class="footer container" align="right">
+  <footer class="footer container">
     <div><strong>Maine Hindu Temple</strong></div>
     <div>719 Main St, Westbrook, ME 04092 · Phone: <a href="tel:+12073700475">(207) 370-0475</a></div>
     <div>© <span id="year"></span> Maine Hindu Temple · All rights reserved.</div>
     <p class="small">
-      Maine Hindu Temple (MHT) is a registered Non-Profit organization under Section 501(c)(3) of the IRS. 
-      MHT’s objectives are to maintain a place of worship for the practice of the Hindu religion and to conduct and/or sponsor 
+      Maine Hindu Temple (MHT) is a registered Non-Profit organization under Section 501(c)(3) of the IRS.
+      MHT’s objectives are to maintain a place of worship for the practice of the Hindu religion and to conduct and/or sponsor
       religious, spiritual, charitable, educational, social, and cultural activities for the benefit of the Hindu community in Maine.
       <br /><br />
       <strong>Thank you very much and appreciate your donations towards MHT!</strong>
@@ -197,6 +248,5 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
