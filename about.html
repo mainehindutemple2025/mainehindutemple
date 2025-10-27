@@ -8,6 +8,7 @@
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav class="nav">
     <div class="inner container">
       <div class="brand">
@@ -15,29 +16,32 @@
         <div>Maine Hindu Temple</div>
       </div>
       <div class="menu">
-        <a href="index.html" class="">Home</a>
+        <a href="index.html">Home</a>
         <a href="about.html" class="active">About</a>
-        <a href="events.html" class="">Events</a>
-        <a href="gallery.html" class="">Gallery</a>
-        <a href="volunteer.html" class="">Volunteer</a>
-        <a href="donate.html" class="">Donate</a>
-        <a href="contact.html" class="">Contact</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="volunteer.html">Volunteer</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
   </nav>
 
-
+  <!-- Header -->
   <header class="hero container">
     <h1>About MHT</h1>
     <p>Our mission is to preserve and promote Hindu dharma, culture, and values through worship, education, and community service.</p>
   </header>
+
+  <!-- Main Content -->
   <main class="container section">
     <h2 class="h2">Our Story</h2>
     <p>Maine Hindu Temple began as a community effort to build a home for devotion and culture. We welcome all who seek peace, learning, and service.</p>
+
     <div class="grid">
       <div class="card">
         <h3>Values</h3>
-        <p>Truth · Love · Peace · Right Conduct · Non‑violence</p>
+        <p>Truth · Love · Peace · Right Conduct · Non-violence</p>
       </div>
       <div class="card">
         <h3>Deities</h3>
@@ -48,15 +52,29 @@
         <p>Language classes, youth activities, cultural events, and seva.</p>
       </div>
     </div>
+
+    <!-- Community Blurb -->
+    <section id="community" class="section">
+      <h2>About the Maine Hindu American Community</h2>
+      <p>Learn more about how the Maine Hindu community has grown and established itself in the region in this article from <em>The World</em>:</p>
+      <p>
+        <a href="https://theworld.org/stories/2013/09/24/maine-hindu-american-community-comes-its-own" target="_blank" rel="noopener">
+          Maine’s Hindu American community comes into its own – The World (2013)
+        </a>
+      </p>
+    </section>
   </main>
 
-
-  <div class="footer container">
+  <!-- Footer -->
+  <footer class="footer container">
     <div><strong>Maine Hindu Temple</strong></div>
-    <div>719 Main St, Westbrook, ME 04092 · Phone: (207) 370-0475</div>
+    <div>719 Main St, Westbrook, ME 04092 · Phone: <a href="tel:+12073700475">(207) 370-0475</a></div>
     <div>© <span id="year"></span> Maine Hindu Temple · All rights reserved.</div>
-  </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
