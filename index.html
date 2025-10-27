@@ -5,27 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home · Maine Hindu Temple</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Inline image adjustments */
+    .brand img {
+      width: 100px;        /* make logo clearly visible */
+      height: auto;
+      border-radius: 8px;  /* soft rounded edges */
+      display: block;
+    }
+    .brand div {
+      display: none;       /* hides the text name */
+    }
+  </style>
 </head>
 <body>
 
   <nav class="nav">
     <div class="inner container">
       <div class="brand">
-        <img src="mht.jpg" alt="MHT">
-        <div>Maine Hindu Temple</div>
+        <img src="mht.jpg" alt="MHT Logo">
       </div>
       <div class="menu">
         <a href="index.html" class="active">Home</a>
-        <a href="about.html" class="">About</a>
-        <a href="events.html" class="">Events</a>
-        <a href="gallery.html" class="">Gallery</a>
-        <a href="volunteer.html" class="">Volunteer</a>
-        <a href="donate.html" class="">Donate</a>
-        <a href="contact.html" class="">Contact</a>
+        <a href="about.html">About</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="volunteer.html">Volunteer</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
   </nav>
-
 
   <header class="hero container">
     <span class="badge">Sanātana Dharma · सत्यं शिवं सुंदरम्</span>
@@ -33,6 +43,7 @@
     <p>MHT is a spiritual and cultural home for the Hindu community in Maine. Join us for weekly puja, festivals, and cultural programs.</p>
     <a class="cta" href="events.html">See Upcoming Events</a>
   </header>
+
   <main class="container">
     <div class="grid">
       <div class="card">
@@ -53,13 +64,15 @@
     </div>
   </main>
 
-
   <div class="footer container">
     <div><strong>Maine Hindu Temple</strong></div>
     <div>719 Main St, Westbrook, ME 04092 · Phone: (207) 370-0475</div>
     <div>© <span id="year"></span> Maine Hindu Temple · All rights reserved.</div>
   </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
