@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home · Maine Hindu Temple</title>
   <link rel="stylesheet" href="styles.css" />
+
   <style>
     /* Inline image adjustments */
     .brand img {
@@ -17,12 +18,12 @@
       display: none;
     }
 
-    /* Visitor counter styling */
-    #visitor-counter {
+    /* Visitor Counter Styling (used in header & footer) */
+    .visitor-counter {
       margin-top: 10px;
       font-size: 1rem;
       font-weight: 600;
-      color: #b89c3d; /* temple gold tone */
+      color: #b89c3d; /* temple gold */
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -31,16 +32,37 @@
       border-radius: 25px;
       padding: 6px 14px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in;
     }
-    #visitor-counter svg {
+    .visitor-counter svg {
       width: 18px;
       height: 18px;
       fill: #b89c3d;
     }
+
+    .footer-counter {
+      font-size: 0.9rem;
+      background: #fff8e0;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      color: #b89c3d;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
+
 <body>
 
+  <!-- Navigation -->
   <nav class="nav">
     <div class="inner container">
       <div class="brand">
@@ -59,22 +81,24 @@
     </div>
   </nav>
 
+  <!-- Hero Header -->
   <header class="hero container">
     <span class="badge">Sanātana Dharma · सत्यं शिवं सुंदरम्</span>
     <h1>Welcome to Maine Hindu Temple</h1>
 
-    <!-- Visitor Counter (CountAPI) -->
-    <div id="visitor-counter">
+    <!-- Static Visitor Counter -->
+    <div id="visitor-counter" class="visitor-counter">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8a8.009 8.009 0 0 1-8 8zm1-13h-2v6l5.25 3.15l1-1.63L13 12.75z"/>
       </svg>
-      Visitors: <span id="count">...</span>
+      You are visitor #<span id="count">0</span> 🎉
     </div>
 
     <p>MHT is a spiritual and cultural home for the Hindu community in Maine. Join us for weekly puja, festivals, and cultural programs.</p>
     <a class="cta" href="events.html">See Upcoming Events</a>
   </header>
 
+  <!-- Main Content -->
   <main class="container">
     <div class="grid">
       <div class="card">
@@ -95,24 +119,35 @@
     </div>
   </main>
 
+  <!-- Footer -->
   <div class="footer container">
     <div><strong>Maine Hindu Temple</strong></div>
     <div>719 Main St, Westbrook, ME 04092 · Phone: (207) 370-0475</div>
     <div>© <span id="year"></span> Maine Hindu Temple · All rights reserved.</div>
+
+    <!-- Footer Visitor Counter -->
+    <div id="footer-counter" class="footer-counter">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8a8.009 8.009 0 0 1-8 8zm1-13h-2v6l5.25 3.15l1-1.63L13 12.75z"/>
+      </svg>
+      Visitors: <span id="count-footer">0</span>
+    </div>
   </div>
 
+  <!-- Scripts -->
   <script>
+    // update current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Visitor Counter using CountAPI
-    fetch('https://api.countapi.xyz/hit/mainehindutemple.org/visits')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('count').textContent = data.value.toLocaleString();
-      })
-      .catch(() => {
-        document.getElementById('count').textContent = 'unavailable';
-      });
+    // Static local visitor counter
+    const key = 'mht_static_visit_counter';
+    let count = parseInt(localStorage.getItem(key) || '0', 10);
+    count++;
+    localStorage.setItem(key, count);
+
+    // Update header and footer counters
+    document.getElementById('count').textContent = count.toLocaleString();
+    document.getElementById('count-footer').textContent = count.toLocaleString();
   </script>
 
 </body>
