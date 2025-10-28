@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* Inline image adjustments */
+    /* Logo styling */
     .brand img {
       width: 300px;
       height: auto;
@@ -18,41 +18,63 @@
       display: none;
     }
 
-    /* Visitor Counter Styling */
-    #visitor-counter, #footer-counter {
-      font-weight: 700;
-      color: #b89c3d; /* temple gold */
+    /* Marquee Visitor Counter Styling */
+    #visitor-counter {
+      margin-top: 15px;
+      width: 100%;
+      overflow: hidden;
       background-color: #fff7dc;
       border-radius: 30px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      padding: 8px 0;
+      text-align: center;
+    }
+
+    .marquee-content {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      justify-content: center;
-      padding: 8px 16px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease-in;
-      margin-top: 12px;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #b89c3d;
+      white-space: nowrap;
+      animation: marquee 12s linear infinite;
     }
-    #visitor-counter svg, #footer-counter svg {
+
+    /* Pause animation when hovered */
+    #visitor-counter:hover .marquee-content {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    #visitor-counter svg {
       width: 20px;
       height: 20px;
       fill: #b89c3d;
     }
 
-    #visitor-counter span {
-      font-size: 1.2rem;
-      color: #a5831b;
-    }
-
+    /* Footer visitor counter */
     #footer-counter {
-      font-size: 0.9rem;
+      font-weight: 700;
+      color: #b89c3d;
+      background-color: #fff7dc;
+      border-radius: 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: center;
       padding: 6px 12px;
-      margin-top: 8px;
+      margin-top: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
+    #footer-counter svg {
+      width: 16px;
+      height: 16px;
+      fill: #b89c3d;
     }
   </style>
 </head>
@@ -78,17 +100,19 @@
     </div>
   </nav>
 
-  <!-- Hero Header -->
+  <!-- Hero Section -->
   <header class="hero container">
     <span class="badge">Sanātana Dharma · सत्यं शिवं सुंदरम्</span>
     <h1>Welcome to Maine Hindu Temple</h1>
 
-    <!-- Static Visitor Counter (Main Section) -->
-    <div id="visitor-counter">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8a8.009 8.009 0 0 1-8 8zm1-13h-2v6l5.25 3.15l1-1.63L13 12.75z"/>
-      </svg>
-      <strong>You are visitor #<span id="count">0</span> 🎉</strong>
+    <!-- Scrolling Visitor Counter -->
+    <div id="visitor-counter" class="marquee">
+      <div class="marquee-content">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8a8.009 8.009 0 0 1-8 8zm1-13h-2v6l5.25 3.15l1-1.63L13 12.75z"/>
+        </svg>
+        <strong>You are visitor #<span id="count">0</span> 🎉</strong>
+      </div>
     </div>
 
     <p>MHT is a spiritual and cultural home for the Hindu community in Maine. Join us for weekly puja, festivals, and cultural programs.</p>
@@ -122,7 +146,7 @@
     <div>719 Main St, Westbrook, ME 04092 · Phone: (207) 370-0475</div>
     <div>© <span id="year"></span> Maine Hindu Temple · All rights reserved.</div>
 
-    <!-- Smaller Visitor Counter in Footer -->
+    <!-- Footer Visitor Counter -->
     <div id="footer-counter">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8a8.009 8.009 0 0 1-8 8zm1-13h-2v6l5.25 3.15l1-1.63L13 12.75z"/>
@@ -133,16 +157,16 @@
 
   <!-- Scripts -->
   <script>
-    // update year
+    // Update year dynamically
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Static visitor counter stored locally (same count for header and footer)
+    // Static visitor counter stored locally (shared between header and footer)
     const key = 'mht_static_visit_counter';
     let count = parseInt(localStorage.getItem(key) || '0', 10);
     count++;
     localStorage.setItem(key, count);
 
-    // Update both header and footer
+    // Update both header and footer counters
     document.getElementById('count').textContent = count.toLocaleString();
     document.getElementById('footer-count').textContent = count.toLocaleString();
   </script>
