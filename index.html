@@ -41,7 +41,6 @@
       animation: marquee 12s linear infinite;
     }
 
-    /* Pause animation when hovered */
     #visitor-counter:hover .marquee-content {
       animation-play-state: paused;
     }
@@ -157,18 +156,35 @@
 
   <!-- Scripts -->
   <script>
-    // Update year dynamically
+    // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Static visitor counter stored locally (shared between header and footer)
-    const key = 'mht_static_visit_counter';
-    let count = parseInt(localStorage.getItem(key) || '0', 10);
-    count++;
-    localStorage.setItem(key, count);
+    // ---- Global Visitor Counter via CountAPI ----
+    const DOMAIN = 'mainehindutemple.net';
+    const KEY = 'home';
+    const BASE = 'https://api.countapi.xyz';
+    const UNIQUE_PER_BROWSER = true;
 
-    // Update both header and footer counters
-    document.getElementById('count').textContent = count.toLocaleString();
-    document.getElementById('footer-count').textContent = count.toLocaleString();
+    const seenKey = `mht_seen_${KEY}`;
+    const firstVisit = !localStorage.getItem(seenKey);
+
+    const endpoint = (UNIQUE_PER_BROWSER && !firstVisit)
+      ? `${BASE}/get/${encodeURIComponent(DOMAIN)}/${encodeURIComponent(KEY)}`
+      : `${BASE}/hit/${encodeURIComponent(DOMAIN)}/${encodeURIComponent(KEY)}`;
+
+    fetch(endpoint, { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => {
+        const count = Number(data?.value || 0);
+        document.getElementById('count').textContent = count.toLocaleString();
+        document.getElementById('footer-count').textContent = count.toLocaleString();
+        if (UNIQUE_PER_BROWSER && firstVisit) {
+          localStorage.setItem(seenKey, '1');
+        }
+      })
+      .catch(err => {
+        console.error('Visitor counter failed:', err);
+      });
   </script>
 
 </body>
