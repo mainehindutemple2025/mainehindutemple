@@ -41,6 +41,7 @@
       animation: marquee 12s linear infinite;
     }
 
+    /* Pause animation when hovered */
     #visitor-counter:hover .marquee-content {
       animation-play-state: paused;
     }
@@ -159,32 +160,88 @@
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ---- Global Visitor Counter via CountAPI ----
-    const DOMAIN = 'mainehindutemple.net';
-    const KEY = 'home';
-    const BASE = 'https://api.countapi.xyz';
-    const UNIQUE_PER_BROWSER = true;
+    /**
+     * Global counter rules:
+     * - Only increment if this public IP has never been seen before (global, not just this browser).
+     * - We store a "seen" key in a remote KV (CountAPI clone) using a SHA-256 hash of the IP (privacy-friendly).
+     * - If seen first time: increment main counter; else: read main counter.
+     */
 
-    const seenKey = `mht_seen_${KEY}`;
-    const firstVisit = !localStorage.getItem(seenKey);
+    // --- Config ---
+    const COUNTER_BASE = 'https://countapi.mileshilliard.com/api/v1'; // maintained CountAPI clone
+    const MAIN_COUNTER_KEY = 'mainehindutemple.net/home'; // global total (change per page if needed)
+    const IP_SEEN_PREFIX = 'mht-seen-ip-'; // prefix for per-IP "seen" keys
 
-    const endpoint = (UNIQUE_PER_BROWSER && !firstVisit)
-      ? `${BASE}/get/${encodeURIComponent(DOMAIN)}/${encodeURIComponent(KEY)}`
-      : `${BASE}/hit/${encodeURIComponent(DOMAIN)}/${encodeURIComponent(KEY)}`;
+    // --- Helpers ---
+    async function getPublicIP() {
+      // Fetch visitor's public IP (simple JSON API)
+      const res = await fetch('https://api.ipify.org?format=json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('IP fetch failed');
+      const data = await res.json();
+      return data.ip;
+    }
 
-    fetch(endpoint, { cache: 'no-store' })
-      .then(r => r.json())
-      .then(data => {
-        const count = Number(data?.value || 0);
-        document.getElementById('count').textContent = count.toLocaleString();
-        document.getElementById('footer-count').textContent = count.toLocaleString();
-        if (UNIQUE_PER_BROWSER && firstVisit) {
-          localStorage.setItem(seenKey, '1');
+    async function sha256Hex(text) {
+      const enc = new TextEncoder();
+      const data = enc.encode(text);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const bytes = new Uint8Array(hashBuffer);
+      return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function countapiHit(key) {
+      const url = `${COUNTER_BASE}/hit/${encodeURIComponent(key)}`;
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error('hit failed');
+      return res.json(); // { value: number }
+    }
+
+    async function countapiGet(key) {
+      const url = `${COUNTER_BASE}/get/${encodeURIComponent(key)}`;
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error('get failed');
+      return res.json(); // { value: number }
+    }
+
+    function updateUI(total) {
+      const n = Number(total || 0);
+      document.getElementById('count').textContent = n.toLocaleString();
+      document.getElementById('footer-count').textContent = n.toLocaleString();
+    }
+
+    (async function initVisitorCount() {
+      try {
+        // 1) Determine visitor's public IP and hash it (privacy)
+        const ip = await getPublicIP();
+        const ipHash = await sha256Hex(ip);
+        const seenKey = IP_SEEN_PREFIX + ipHash;
+
+        // 2) Mark this IP as seen in the global KV and check the returned value
+        //    - If returned value === 1, it's the first time this IP is seen globally -> increment main counter.
+        //    - Else, just read the main counter without incrementing.
+        let total;
+        try {
+          const seen = await countapiHit(seenKey); // increments this IP's seen counter
+          if (Number(seen.value) === 1) {
+            const main = await countapiHit(MAIN_COUNTER_KEY); // first visit from this IP -> increment main
+            total = main.value;
+          } else {
+            const main = await countapiGet(MAIN_COUNTER_KEY); // already seen IP -> just read
+            total = main.value;
+          }
+        } catch (e) {
+          // If the "seen" flow fails for any reason, fall back to reading main counter
+          const main = await countapiGet(MAIN_COUNTER_KEY);
+          total = main.value;
         }
-      })
-      .catch(err => {
+
+        updateUI(total);
+      } catch (err) {
         console.error('Visitor counter failed:', err);
-      });
+        // Optional: keep 0 or hide the UI if unreachable
+        // document.getElementById('visitor-counter').style.display = 'none';
+      }
+    })();
   </script>
 
 </body>
